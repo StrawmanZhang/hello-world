@@ -1,0 +1,35 @@
+Before ES6, variable scope has always been "function".
+var a = 2;
+
+(function IIFE(){
+	var a = 3;
+	console.log( a );	// 3
+})();
+
+console.log( a );		// 2
+
+ES6: Blocking scope, a pair of { .. } to create a scope.
+var a = 2;
+{
+	let a = 3;
+	console.log( a );	// 3
+}
+
+console.log( a );		// 2
+
+let declarations attach to the block scope but are not initialized until they appear in the block. So if run b before let b statement, error throws.
+While var just print undefined.
+Avoids the accidental errors of accessing too early. let declarations is suggested to be all be at the top of their scope. 
+
+let + for
+var funcs = [];
+
+for (let i = 0; i < 5; i++) {
+	funcs.push( function(){
+		console.log( i );
+	} );
+}
+
+funcs[3]();		// 3
+
+it redeclares a new i for each iteration of the loop. That means closures created inside the loop.
